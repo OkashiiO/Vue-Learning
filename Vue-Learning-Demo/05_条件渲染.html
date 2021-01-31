@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue demo</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="test">
+      <p v-if="ok">成功</p>
+      <p v-else>失败</p>
+
+      <p v-show = 'ok'>yes</p>
+      <p v-show = '!ok'>no</p>
+    
+      <button @click = "ok = !ok">切换</button>
+  </div>
+
+
+  
+  <script>
+    var vm = new Vue({
+      el: '#test',
+      data: {
+        ok: true,
+      },
+    })
+  </script>
+</body>
+</html>

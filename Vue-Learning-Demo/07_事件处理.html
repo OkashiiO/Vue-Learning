@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue demo</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="test">
+      <h2>1.绑定监听</h2>
+      <button @click="test1('msg')"></button>
+      <button @click="test2($event)"></button>
+
+      <h2>2.事件修饰符</h2>
+      <div @click="test3" style="width: 200px;height: 200px;background-color: red;" >
+        <div @click.stop="test4" style="width: 100px;height: 100px;background-color: red;""></div>
+    </div>
+    <a href="https://www.baidu.com/" @click.prevnet="test5"></a>
+
+      <h2>3.按键修饰符</h2>
+      <input type="text" @keyup.enter="test6">
+  </div>
+
+
+  
+  <script>
+    var vm = new Vue({
+      el: '#test',
+      data: {
+        message: 'Go Go Go!',
+        name: ''
+      },
+      methods:{
+          test1(value){
+            alert(value)
+          },
+          test2(event){
+            alert(event.target.innerHTML)
+          },
+          test3(){
+            alert('out')
+          },
+          test4(){
+            alert('inner')
+          },
+          test5(){
+            alert('点击不跳转')
+          },
+          test6(event){
+              alert(event.target.value)
+          }
+      }
+    })
+  </script>
+</body>
+</html>

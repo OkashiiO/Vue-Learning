@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue demo</title>
+  <script src="vue.js"></script>
+  <style>
+      [v-cloak] {
+          display: none;
+      }
+  </style>
+</head>
+<body>
+  <div id="test">
+      <p ref="content">hello</p>
+      <button @click="hint">hint</button>
+      <p v-text="msg"></p>
+      <p v-cloak>{{msg}}</p>
+
+      <!-- 自定义指令 -->
+      <p v-upper-text='msg1'></p>
+      <p v-lower-text='msg2'></p>
+  </div>
+
+
+  
+  <script>
+      let a= '';
+      a.charCodeAt
+    //   定义全局指令
+    Vue.directive('upper-text', function(el,binding){
+        el.textContent = binding.value.toUpperCase()
+        
+    })
+    var vm = new Vue({
+      el: '#test',
+      data: {
+          msg:'OhOhOh',
+          msg1:'To Be No.1',
+          msg2:'Just Do it',
+      },
+      directives: {//注册局部指令
+        'lower-text': function (el,binding) {
+            el.textContent = binding.value.toLowerCase();
+        }
+      },
+      methods:{
+          hint(){
+            alert(this.$refs.content.textContent)
+          }
+      }
+    })
+  </script>
+</body>
+</html>

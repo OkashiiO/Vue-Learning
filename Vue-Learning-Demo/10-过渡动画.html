@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue demo</title>
+  <script src="vue.js"></script>
+  <style>
+
+      /* 显示、隐藏的过渡效果 */
+      .xxx-enter-active, .xxx-leave-active {
+          transition: opacity .5s;
+      }
+      /* 隐藏时的样式 */
+      .xxx-enter, .xxx-leave-to  {
+          opacity: 0;
+      }
+
+      .move-enter-active, .move-leave-active{
+          transition: all 1s;
+      }
+      .move-enter, .move-leave-to  {
+          opacity: 0;
+          transform: translateX(20px);
+      }
+
+
+  </style>
+</head>
+<body>
+  <div id="test">
+      <button v-on:click = "show = !show">Toggle</button>
+      <transition name="xxx">
+          <p v-if="show">hello</p>
+      </transition>
+
+      <button v-on:click = "show2 = !show2">Toggle</button>
+      <transition name="move">
+          <p v-if="show2">hello</p>
+      </transition>
+  </div>
+
+
+  
+  <script>
+    var vm = new Vue({
+      el: '#test',
+      data: {
+          show:true,
+          show2:true,
+      }
+    })
+  </script>
+</body>
+</html>

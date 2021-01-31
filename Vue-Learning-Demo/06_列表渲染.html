@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue demo</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="test">
+      <h2>v-for 遍历数组</h2>
+      <ul>
+          <li v-for="(item,index) in person" :key="index">
+              {{index}}-{{item.name}}-{{item.age}}
+              <button @click="deleteP(index)">删除</button>
+          </li>
+      </ul>
+
+      <h2>v-for 遍历对象</h2>
+      <ul>
+          <li v-for="(value,key) in person[0]" :key="key">
+            {{key}}-{{value}}
+          </li>
+      </ul>
+
+      <h2>列表搜索排序</h2>
+      <input type="text" v-model="searchName">
+      <ul>
+        <li v-for="(item,index) in filterPerson" :key="index">
+            {{index}}-{{item.name}}-{{item.age}}
+        </li>
+    </ul>
+
+    <button @click="orderType = 1">年龄升序</button>
+    <button @click="orderType = 2">年龄降序</button>
+    <button @click="orderType = 0">原本顺序</button>
+  </div>
+
+
+  
+  <script>
+    var vm = new Vue({
+      el: '#test',
+      data: {
+        searchName:'',
+        orderType:0,//0:原本顺序,1:年龄升序,2:年龄降序
+        person:[
+            {name:'Tom',age:18},
+            {name:'Jack',age:28},
+            {name:'Mom',age:45},
+            {name:'Tony',age:22},
+            {name:'Jhon',age:75},
+        ]
+      },
+      methods:{
+          deleteP(index){
+              console.log(1)
+              this.person.splice(index,1)
+          }
+      },
+      computed:{
+        filterPerson(){
+            const {searchName,person,orderType}=this;
+            let res = [];
+            res = person.filter(p => p.name.indexOf(searchName) !== -1);
+            //order
+            if(orderType !== 0){
+                res.sort(function(a,b){
+                    if(orderType == 1)
+                        return a.age - b.age;
+                    else
+                        return b.age - a.age;
+                })
+            }
+            return res;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

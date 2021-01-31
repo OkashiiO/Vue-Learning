@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue demo</title>
+  <script src="vue.js"></script>
+  <style>
+      .aClass{
+          color: red;
+      }
+      .bClass{
+          color: green;
+      }
+  </style>
+</head>
+<body>
+  <div id="test">
+      <h2>class绑定</h2>
+      <p :class='a'>gogogo</p>
+      <p :class="{aClass: false,bClass:true}"></p>
+      <p :class="['aClass','bClass']"></p>
+
+      <h2>style绑定</h2>
+      <p :style='{color: activeColor}'></p>
+
+      <button @click = "update_class">update</button>
+  </div>
+
+
+  
+  <script>
+    var vm = new Vue({
+      el: '#test',
+      data: {
+        message: 'Go Go Go!',
+        a: 'aClass',
+        activeColor:'red'
+      },
+      methods:{
+          update_class(){
+              this.a = 'bClass';
+          }
+      }
+    })
+  </script>
+</body>
+</html>

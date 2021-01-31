@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Vue demo</title>
+  <script src="vue.js"></script>
+  <script src="vue-MyPlugin.js"></script>
+
+</head>
+<body>
+  <div id="test">
+      <p v-my-directive='msg'></p>
+  </div>
+
+
+  
+  <script>
+    //声明使用插件
+    Vue.use(MyPlugin)//内部会执行MyPlugin.install(Vue)
+    Vue.myGlobalMethod()
+    var vm = new Vue({
+      el: '#test',
+      data: {
+          msg:'i like you'
+      }
+    })
+    vm.$myMethod()
+  </script>
+</body>
+</html>
